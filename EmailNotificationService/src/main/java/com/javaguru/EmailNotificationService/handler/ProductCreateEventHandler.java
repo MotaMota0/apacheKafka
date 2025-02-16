@@ -1,5 +1,6 @@
 package com.javaguru.EmailNotificationService.handler;
 
+import com.javaguru.EmailNotificationService.exception.NonRetryableException;
 import com.javaguru.core.ProductCreatedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,9 @@ public class ProductCreateEventHandler {
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
      @KafkaHandler
     public void handle(ProductCreatedEvent productCreatedEvent ){
+         if(true){
+             throw new NonRetryableException("non retyable exception");
+         }
         LOGGER.info("Received event {} ",productCreatedEvent.getTitle());
     }
 
